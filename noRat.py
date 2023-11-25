@@ -12,7 +12,7 @@ class no_rat:
 
     def divide(self, other_a, other_b):
         try:
-            new_a = self.a * other_b  # Dividing a/b by other_a/other_b
+            new_a = self.a * other_b  
             new_b = self.b * other_a
             gcd = self.common_div(new_a, new_b)
             print(f"{int(new_a / gcd)} / {int(new_b / gcd)}")  # Dividing by gcd to get the simplest form
