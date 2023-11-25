@@ -11,7 +11,11 @@ class no_rat:
         return n
 
     def divide(self, other_a, other_b):
-        new_a = self.a * other_b                        #Dividing a/b by other_a/other_b
-        new_b = self.b * other_a
-        gcd = self.common_div(new_a, new_b)
-        print(f"{int(new_a / gcd)} / {int(new_b / gcd)}")   #Dividing by gcd to get the simplest form
+        try:
+            new_a = self.a * other_b  # Dividing a/b by other_a/other_b
+            new_b = self.b * other_a
+            gcd = self.common_div(new_a, new_b)
+            print(f"{int(new_a / gcd)} / {int(new_b / gcd)}")  # Dividing by gcd to get the simplest form
+
+        except:
+            raise ValueError("Action not allowed: divisor = 0!")
