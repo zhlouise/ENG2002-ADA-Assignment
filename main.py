@@ -1,5 +1,6 @@
 import no_rat
 
+
 # Function to display the main menu
 def main_menu():
   # Loop to display main menu, where the user is repeatly asked to choose an operation
@@ -21,15 +22,17 @@ def main_menu():
       # If user input is not one of the choices, prompt input again
       print ("Invalid input, please enter again!")
 
+
 # Function to perform division between 2 rational numbers that the user inputted
 def rat_div():
   while True:
     # Ask the user to input a rational number for performing the division
     a1 = int(input("Please enter the numerator of your first rational number: "))
     b1 = int(input("Please enter the denominator of your first rational number: "))
-    # Make the rational number an object of class noRat
+    # Make the rational number into an object of class noRat
     try: 
       rat_1 = no_rat.no_rat(a1, b1)
+    # If the denominator is zero, display an error message and ask the user to re-input.
     except ZeroDivisionError:
       print("Action not allowed: cannot divide by zero! Try again.")
       # If a value error is raised, skip the entire iteration
@@ -62,8 +65,10 @@ def rat_div():
       # If user input is not one of the choices, prompt input again
       print ("Invalid input, please enter again!")
 
+
 def rat_npower():
   print("holder")
+
 
 def quit():
   print ("Goodbye!")
