@@ -1,26 +1,37 @@
 class no_rat:
-  def __init__(self, a, b):
+  def __init__(self, a, b): # Initialize the no_rat class
+    # Try dividing a and b to see wheter a value error would be raised
     try:
-      rat = a/b
+      rat = a/b  
       self.a = a
       self.b = b
+      print ("The rational number you entered is {}/{}.".format(self.a, self.b))
     except:
-      raise ValueError("Action not allowed: denominator cannot be 0!")
-
-  # Method for calculating the greatest common divisor. Running a loop from 1 to the lowest number among a and b. Storing the value of i into n if remainder of a/i and b/i both are 0.
+      raise ValueError("Action not allowed: cannot divide by zero!")
+  
+  # Method for calculating the greatest common divisor between 2 integers. 
   def common_div(self, a, b):
-        n = 0
-        for i in range(1, min(a, b) + 1):
-            if a % i == b % i == 0:
-                n = i
-        return n
+    n = 0
+    # Run a loop from 1 to the lowest number between a and b.
+    for i in range(1, min(a, b) + 1):
+      # For each loop, store the value of i into n 
+      # if the remainder of a/i and b/i are both zero.
+      if a % i == b % i == 0:
+        n = i
+    return n
 
-  def divide(self, other_a, other_b):
+  # Method that performs a division with another rational number
+  # and returns the result as a rational number.
+  def divide(self, other):
     try:
-      new_a = self.a * other_b  #Dividing a/b by other_a/other_b
-      new_b = self.b * other_a
+      # Dividing a/b by other_a/other_b
+      new_a = self.a * other.b
+      new_b = self.b * other.a
+      # Dividing by gcd (greatest common divisor) to get the simplest form
       gcd = self.common_div(new_a, new_b)
-      # Dividing by gcd to get the simplest form
-      print(f"{int(new_a / gcd)} / {int(new_b / gcd)}")
-    except:
-      raise ValueError("Action not allowed: divisor = 0!")
+      ans_a = new_a / gcd
+      ans_b = new_b / gcd
+      print("The rational answer for {}/{} divided by {}/{} is {}/{}."
+            .format(self.a, self.b, other.a, other.b, ans_a, ans_b))
+    except: # If the denominator is zero, then raise a value error
+      raise ValueError("Action not allowed: cannot divide by zero!")
