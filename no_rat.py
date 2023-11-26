@@ -1,13 +1,9 @@
 class no_rat:
   def __init__(self, a, b): # Initialize the no_rat class
-    # Try dividing a and b to see wheter a value error would be raised
-    try:
-      rat = a/b  
-      self.a = a
-      self.b = b
-      print ("The rational number you entered is {}/{}.".format(self.a, self.b))
-    except:
-      raise ValueError("Action not allowed: cannot divide by zero!")
+    rat = a/b  
+    self.a = a
+    self.b = b
+    print ("The rational number you entered is {}/{}.".format(self.a, self.b))
   
   # Method for calculating the greatest common divisor between 2 integers. 
   def common_div(self, a, b):
@@ -23,15 +19,12 @@ class no_rat:
   # Method that performs a division with another rational number
   # and returns the result as a rational number.
   def divide(self, other):
-    try:
-      # Dividing a/b by other_a/other_b
-      new_a = self.a * other.b
-      new_b = self.b * other.a
-      # Dividing by gcd (greatest common divisor) to get the simplest form
-      gcd = self.common_div(new_a, new_b)
-      ans_a = new_a / gcd
-      ans_b = new_b / gcd
-      print("The rational answer for {}/{} divided by {}/{} is {}/{}."
-            .format(self.a, self.b, other.a, other.b, ans_a, ans_b))
-    except: # If the denominator is zero, then raise a value error
-      raise ValueError("Action not allowed: cannot divide by zero!")
+    # Dividing a/b by other_a/other_b
+    new_a = self.a * other.b
+    new_b = self.b * other.a
+    # Dividing by gcd (greatest common divisor) to get the simplest form
+    gcd = self.common_div(new_a, new_b)
+    ans_a = int(new_a / gcd)
+    ans_b = int(new_b / gcd)
+    print("The rational answer for {}/{} divided by {}/{} is {}/{}."
+          .format(self.a, self.b, other.a, other.b, ans_a, ans_b))
