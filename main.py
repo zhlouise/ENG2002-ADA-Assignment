@@ -27,21 +27,30 @@ def main_menu():
 def rat_div():
   while True:
     # Ask the user to input a rational number for performing the division
-    a1 = int(input("Please enter the numerator of your first rational number: "))
-    b1 = int(input("Please enter the denominator of your first rational number: "))
-    # Make the rational number into an object of class noRat
+    try:
+      a1 = int(input("Please enter the numerator of your first rational number (integer only): "))
+      b1 = int(input("Please enter the denominator of your first rational number (integer only): "))
+    # If the input is not an integer, ask the user to re-input
+    except ValueError:
+      print("Invalid integer input, please try again.")
+      continue
+    # Make the rational number into an object of class no_rat
     try: 
       rat_1 = no_rat.no_rat(a1, b1)
     # If the denominator is zero, display an error message and ask the user to re-input.
     except ZeroDivisionError:
       print("Action not allowed: cannot divide by zero! Try again.")
-      # If a value error is raised, skip the entire iteration
+      # If an error is raised, skip the entire iteration
       # and ask the user to key in the rational numbers again.
       continue
     
     # Repeat for the second rational number
-    a2 = int(input("Please enter the numerator of your second rational number: "))
-    b2 = int(input("Please enter the denominator of your second rational number: "))
+    try: 
+      a2 = int(input("Please enter the numerator of your second rational number (integer only): "))
+      b2 = int(input("Please enter the denominator of your second rational number (integer only): "))
+    except ValueError:
+      print("Invalid integer input, please try again.")
+      continue
     try:
       rat_2 = no_rat.no_rat(a2, b2)
     except ZeroDivisionError:
@@ -54,16 +63,17 @@ def rat_div():
     except ZeroDivisionError: # If the denominator is zero, then raise a value error
       print("Action not allowed: cannot divide by zero! Try again.")
       continue
-    
-    # Prompt the user to quit this operation or to continue another operation
-    rt_choice = input("Input R to return to main menu, or C to continue another calculation: ")
-    if rt_choice == "R":
-      break
-    elif rt_choice == "C":
-      continue
-    else:
-      # If user input is not one of the choices, prompt input again
-      print ("Invalid input, please enter again!")
+     
+    while True:
+      # Prompt the user to quit this operation or to continue another operation
+      rt_choice = input("Input R to return to main menu, or C to continue another calculation: ")
+      if rt_choice == "R":
+        return
+      elif rt_choice == "C":
+        break
+      else:
+        # If user input is not one of the choices, prompt input again
+        print ("Invalid input, please enter again!")
 
 
 def rat_npower():
