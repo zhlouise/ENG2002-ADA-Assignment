@@ -1,5 +1,5 @@
 import no_rat
-
+import user
 
 # Function to display the main menu
 def main_menu():
@@ -76,6 +76,7 @@ def rat_div():
         print ("Invalid input, please enter again!")
 
 
+# Function to calculate the nth power of an entered rational number
 def rat_npower():
   while True:
     # Ask the user to input n as the power
@@ -121,6 +122,36 @@ def rat_npower():
       else:
         # If user input is not one of the choices, prompt input again
         print ("Invalid input, please enter again!")
+
+
+# Function to prompt the user log on process
+def log_on():
+  # Store all the existing users in a users array
+  users = []
+  storage_file = open('username_password.txt', 'r')
+  for line in storage_file:
+    username, password = line.strip().split(',')
+    users.append(user(username, password))
+
+  username = input('Please enter your username: ')
+  user = check_username(username, users)
+
+  if user is None:
+      print('No such username found. Creating new account.')
+      password = input('Please enter a new password: ')
+      users.append(User(username, password))
+      with open('username_password.txt', 'a') as file:
+          file.write(f"{username},{password}\n")
+  else:
+      for _ in range(5):
+          password = input('Please enter your password: ')
+          if password == user.password:
+              print('Welcome!')
+              break
+          else:
+              print('Wrong password. Please try again.')
+      else:
+          print('Wrong password entered 5 times. Application quit.')
 
 
 if __name__ == '__main__':
