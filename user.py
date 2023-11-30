@@ -3,7 +3,6 @@ class login:
     def __init__(self, username = '', password= ''):
         self.username = username
         self.password = password
-        self.check_username()
 
     #Check username stored in a txt file, if new, application asks for password and stores the username and password into the text file.
     def check_username(self):
