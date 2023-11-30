@@ -1,53 +1,38 @@
-# Create a class representing a user of the application
-class user:
-  # Initialize a user object with a username
-  def __init__(self, username, password): 
-    self.username = username
-    self.password = password
-    # Create and append a storage file for storing all the username and password pairs
-    storage_file = open("username_password.txt", "w")
-    # Write the username & password pair into the storage file
-    storage_file.write("{},{}/n".format(username, password))
-    storage_file.close() # Close the storage file
+#Creating class for user login application
+class login:
+    def __init__(self, username = '', password= ''):
+        self.username = username
+        self.password = password
+        self.check_username()
 
-  # Method to check whether a user already exists or not
-  def check_username(username, storage_file):
-    storage_file = open("username_password.txt", "r")
-    for user in users: # Loop for all the user objects in the users array
-      if user.username == self.username:
-        return user # If the user exists, return the user object
+    #Check username stored in a txt file, if new, application asks for password and stores the username and password into the text file.
+    def check_username(self):
+        #assigning i = 5 for 5 attempts for the password
+        i = 5
+        self.username = input("Enter your username: ") 
+        with open('login_info.txt', 'r') as f:             #opening/creating a txt file for storing username and password data
+            lines = [line.strip().split(',') for line in f] #splitting every line in two elements of a list. [0] for username [1] for password.
+        for line in lines:
+            
+            if line[0] == self.username:    #if username exists, checking whether the password from the user matches the record 
+                while i > 0:
+                    self.password = input("Enter your password: ")
+                    if line[1] == self.password:
+                        print("Login Successful!")
+                        return 1
+                    else:
+                        if i > 1:
+                            i -= 1
+                            print(f'Invalid Username/Password! Try again. {i} attempts left.') #This portion will run untill i becomes 0. 5 total attempts for the user.
+                                    
+                        else:
+                            print("Failed to enter the correct password! Application quit.")
+                            return 2
+            else:
+                self.password = input("Create a password: ") #if username is new, appending new username + password in the txt file
+                with open('login_info.txt', 'a') as f:
+                    f.write(f"{self.username},{self.password}\n")
+                print("Account Created!")
+                return 1
+        
 
-  # Method to update the user's password
-  def update_password(self):
-    self.password = input("Please enter your password: ")
-
-  # Method to check
-
-
-
-
-users = []
-storage_file = open('username_password.txt', 'r')
-for line in storage_file:
-  username, password = line.strip().split(',')
-  users.append(user(username, password))
-
-username = input('Please enter your username: ')
-user = check_username(username, users)
-
-if user is None:
-    print('No such username found. Creating new account.')
-    password = input('Please enter a new password: ')
-    users.append(User(username, password))
-    with open('username_password.txt', 'a') as file:
-        file.write(f"{username},{password}\n")
-else:
-    for _ in range(5):
-        password = input('Please enter your password: ')
-        if password == user.password:
-            print('Welcome!')
-            break
-        else:
-            print('Wrong password. Please try again.')
-    else:
-        print('Wrong password entered 5 times. Application quit.')
