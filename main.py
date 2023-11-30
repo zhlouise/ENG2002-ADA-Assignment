@@ -125,7 +125,7 @@ def rat_npower():
 
 lgn = login()
 
-if lgn.check_username() == 1:
+if lgn.check_username() == 1: #works only if the return value from check_username() method is 1.
   main_menu()
 
 else:
