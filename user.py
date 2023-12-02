@@ -9,7 +9,7 @@ class login:
         i = 5
         self.username = input("Enter your username: ") 
         found = False
-        with open('login_info.txt', 'r') as f:             #opening/creating a txt file for storing username and password data
+        with open('login_info.txt', 'r+') as f:             #opening/creating a txt file for storing username and password data
             lines = [line.strip().split(',') for line in f] #splitting every line in two elements of a list. [0] for username [1] for password.
         for line in lines:
             if line[0] == self.username:    #if username exists, checking whether the password from the user matches the record 

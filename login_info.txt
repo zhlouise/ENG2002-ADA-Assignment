@@ -1,9 +1,2 @@
-Sahat,12345
-Louise,23456
-Prithula,34567
-Abrar,asfa342
-Safwan,123456
-Louise,23456
-Alan,3434
-Louise,& C:/Users/Sahat/AppData/Local/Programs/Python/Python310/python.exe "d:/STUDY/ADA Assignment/ENG2002-ADA-Assignment/test.py"
-Dave,5643
+Abrar,1234
+Sahat,2342
